@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Install Python'){
         steps {
-            sh 'apt-get update && apt-get install -y python3'
+            sh 'sudo apt-get update &&  sudo apt-get install -y python3'
         }
     }
     stage('Run Main.py') {
