@@ -1,12 +1,23 @@
 pipeline {
-    agent none {
-        docker { image 'node:18.16.0-alpine' }
+  agent any
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout([$class: 'GitSCM', branches: [[name: '*/main']],
+        doGenerateSubmoduleConfigurations: false, extensions: [],
+        submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ankitrai0506/Jenkins-github.git']]])
+      }
     }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-            }
+    stage('build image'){
+        steps {
+            sh 'docker build -t test_image .'
         }
     }
+    stage('Run Main.py') {
+      steps {
+        sh 'python3 main.py'
+      }
+    }
+  }
 }
