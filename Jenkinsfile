@@ -11,6 +11,7 @@ pipeline {
     }
     stage('build image'){
         steps {
+            sh 'sudo su - jenkins'
             sh 'docker build -t test_image .'
         }
     }
