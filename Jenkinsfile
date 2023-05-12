@@ -15,9 +15,9 @@ pipeline {
             sh 'docker build -t test_image .'
         }
     }
-    stage('Run Main.py') {
+    stage('list image') {
       steps {
-        sh 'python3 main.py'
+        sh 'docker images'
       }
     }
   }
