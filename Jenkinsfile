@@ -20,5 +20,15 @@ pipeline {
         sh 'docker images'
       }
     }
+    stage('Run the container'){
+      steps{
+        sh 'docker run --name my-nginx-container -d -p 8081:80 test_image'
+      }
+    }
+    stage(list running container){
+      steps{
+        sh 'docker container ps'
+        }
+     }
   }
 }
